@@ -1,0 +1,77 @@
+#include "lexer.h"
+
+/*!fa2lexer
+
+    %option generate.tokens = true;
+
+    %file "start.jff";
+    %file "identifier.jff";
+    %file "number.jff";
+    %file "operators.jff";
+    %file "relational_op.jff";
+    %file "comment.jff";
+    %file "symbols.jff";
+
+    %token.descriptions {
+        Identifier = "Identifier",
+        KwDef = "def",
+        KwIf = "if",
+        KwElif = "elif",
+        KwElse = "else",
+        KwInput = "input",
+        KwPrint = "print",
+        KwReturn = "return",
+        KwFor = "for",
+        KwIn = "in",
+        KwLen = "len",
+        KwWhile = "while",
+        KwBreak = "break"
+    }
+
+    %generate.state_enum(State);
+*/
+
+Token Lexer::getNextToken()
+{
+    text = "";
+    /*!fa2lexer
+
+    %generate.lexer(text);
+    */
+}
+
+Token Lexer::findKeyword(const std::string& str)
+{
+    if(str == "if"){
+        return Token::KwIf;
+    } else if(str == "elif"){
+        return Token::KwElif;
+    } else if(str == "else"){
+        return Token::KwElse;
+    } else if(str == "print"){
+        return Token::KwPrint;
+    } else if(str == "input"){
+        return Token::KwInput;
+    } else if(str == "return"){
+        return Token::KwReturn;
+    }else if(str == "for"){
+        return Token::KwFor;
+    }else if(str == "in"){
+        return Token::KwIn;
+    }else if(str == "len"){
+        return Token::KwLen;
+    }else if(str == "while"){
+        return Token::KwWhile;
+    }else if(str == "break"){
+        return Token::KwBreak;
+    }else {
+        return Token::Identifier;
+    }
+}
+
+const char *Lexer::tokenToString(Token tk)
+{
+    /*!fa2lexer
+    %generate.toString(tk);
+    */
+}
